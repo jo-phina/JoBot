@@ -3,7 +3,8 @@ import telebot
 import requests
 import json
 
-# required: python file config.py with APIs to Telegram bot and to local server, i.e., TELEGRAM_API = " " and LOCAL_SERVER_API = " "
+# required: python file config.py with APIs to Telegram bot and to local server where TinyLlama is running,
+#       i.e., TELEGRAM_API = " " and LOCAL_SERVER_API = " "
 # or define here:
 # TELEGRAM_API = ""
 # LOCAL_SERVER_API = ""
@@ -51,7 +52,7 @@ def reply_to_message(msg):
     api_data = {
         "messages": [{"role": "user", "content": incoming_text}],
         "temperature": 0.7,
-        "max_tokens": 200,
+        "max_tokens": 500,
         "stream": False
     }
 
