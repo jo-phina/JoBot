@@ -3,11 +3,13 @@ import telebot
 import requests
 import json
 
-# required: python file config.py with APIs to Telegram bot and to local server where TinyLlama is running,
+# required: python file "config.py" with APIs to Telegram bot and to local server where TinyLlama is running,
 #       i.e., TELEGRAM_API = " " and LOCAL_SERVER_API = " "
 # or define here:
 # TELEGRAM_API = ""
 # LOCAL_SERVER_API = ""
+
+# My TinyLlama is running on a LM Studio server.
 
 # instantiating bot
 bot = telebot.TeleBot(token=TELEGRAM_API)  # refers to my bot in telegram
@@ -22,7 +24,7 @@ def welcome(msg):
 
 @bot.message_handler(commands=['help']) # answer \help request
 def help(msg):
-    help_text = f"I'm sorry, {msg.from_user.first_name}, I worry I won't be able to help since I'm still a tiny llama. But you can try if you want - just don't rely on me!"
+    help_text = f"I'm sorry, {msg.from_user.first_name}, I worry I won't be able to help since I'm still a tiny llama.s"
     bot.send_message(msg.chat.id, help_text)
 
 @bot.message_handler(regexp="help") # reaction if word "help" is in a message
