@@ -27,14 +27,18 @@ def help(msg):
 @bot.message_handler(regexp="help") # reaction if word "help" is in a message
 def handle_help(msg):
     help_text = f"I'm sorry, {msg.from_user.first_name}, I can't help you since I'm still a very tiny llama. Maybe you can ask someone else?"
-    picture = open("./HW/HW9/tinyllama_confused.jpg",'rb')
+    picture = open("./tinyllama_confused.jpg",'rb')
     bot.send_photo(msg.chat.id, photo=picture, caption=help_text)
     picture.close()
 
 
 @bot.message_handler(regexp="llama")    # reaction if word "llama" is in a message'
-def handle_llame(msg):
+def handle_llama(msg):
     bot.reply_to(msg, "Do you mean me?? I'm a tiny llama! ❤️🦙")
+
+@bot.message_handler(regexp="Josephina")    # reaction if word "Josephina" is in a message'
+def handle_Josephina(msg):
+    bot.reply_to(msg, "Josephina? She's my friend! 🤗")
 
 
 # using tinyLlama to answer messages to bot
@@ -47,7 +51,7 @@ def reply_to_message(msg):
     api_data = {
         "messages": [{"role": "user", "content": incoming_text}],
         "temperature": 0.7,
-        "max_tokens": 500,
+        "max_tokens": 200,
         "stream": False
     }
 
