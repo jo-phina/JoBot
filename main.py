@@ -64,7 +64,8 @@ def reply_to_message(msg):
     if resp.status_code == 200:
         api_resp = json.loads(resp.text)    # get response text from API
 
-        # TinyLlama assistant's answer from the API response
+        # TinyLlama assistant's answer from the API response is a dictionary
+        # parse to get generated answer
         TinyLlama_resp = api_resp["choices"][0]["message"]["content"]
 
         bot.reply_to(msg, TinyLlama_resp)
@@ -76,3 +77,30 @@ def reply_to_message(msg):
 
 if __name__ == "__main__":
     bot.polling(none_stop=True)
+
+
+'''
+example answer from TinyLlama
+
+{
+ 'id': '<some id>', 
+ 'object': 'chat.completion', 
+ 'created': <10 digits>, 
+ 'model': 'tinyllama_-_tinyllama-1.1b-chat-v1.0', 
+ 'choices': [{
+              'index': 0, 
+              'logprobs': None, 
+              'finish_reason': 'stop', 
+              'message': {
+                          'role': 'assistant', 
+                          'content': <generated answer>
+                          }
+              }], 
+ 'usage': {
+           'prompt_tokens': <# of prompt tokens>, 
+           'completion_tokens': <# of completed tokens>, 
+           'total_tokens': <total # of tokens>
+           }, 
+ 'system_fingerprint': 'tinyllama_-_tinyllama-1.1b-chat-v1.0'
+ }
+ '''
